@@ -86,9 +86,6 @@
       ></v-text-field>
       <v-spacer></v-spacer>
       <v-btn icon>
-        <v-icon>apps</v-icon>
-      </v-btn>
-      <v-btn icon>
         <v-icon>notifications</v-icon>
       </v-btn>
       <v-btn icon large>
@@ -103,7 +100,7 @@
     <main>
       <v-content>
         <router-view/>
-      </v-content>  
+      </v-content>
     </main>
   </v-app>
 </template>
@@ -114,36 +111,18 @@
       dialog: false,
       drawer: null,
       items: [
-        { icon: 'contacts', text: 'Contacts' },
-        { icon: 'history', text: 'Frequently contacted' },
-        { icon: 'content_copy', text: 'Duplicates' },
+        { icon: 'dashboard', text: 'Home' },
         {
-          icon: 'keyboard_arrow_up',
-          'icon-alt': 'keyboard_arrow_down',
-          text: 'Labels',
-          model: true,
-          children: [
-            { icon: 'add', text: 'Create label' }
-          ]
-        },
-        {
-          icon: 'keyboard_arrow_up',
-          'icon-alt': 'keyboard_arrow_down',
-          text: 'More',
+          icon: 'keyboard_arrow_down',
+          'icon-alt': 'group_work',
+          text: 'Clustering Reports',
           model: false,
           children: [
-            { text: 'Import' },
-            { text: 'Export' },
-            { text: 'Print' },
-            { text: 'Undo changes' },
-            { text: 'Other contacts' }
+            { icon: 'add', text: 'Organize and Dispatch' }
           ]
         },
-        { icon: 'settings', text: 'Settings' },
-        { icon: 'chat_bubble', text: 'Send feedback' },
-        { icon: 'help', text: 'Help' },
-        { icon: 'phonelink', text: 'App downloads' },
-        { icon: 'keyboard', text: 'Go to the old version' }
+        { icon: 'memory', text: 'DSS' },
+        { icon: 'terrain', text: 'Hazard Mapping' }
       ]
     }),
     props: {
