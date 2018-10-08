@@ -14,14 +14,14 @@
             row
             align-center
           >
-            <v-flex xs6>
-              <v-subheader v-if="item.heading">
-                {{ item.heading }}
-              </v-subheader>
-            </v-flex>
-            <v-flex xs6 class="text-xs-center">
-              <a href="#!" class="body-2 black--text">EDIT</a>
-            </v-flex>
+          <!-- <v-flex xs6>
+            <v-subheader v-if="item.heading">
+              {{ item.heading }}
+            </v-subheader>
+          </v-flex>
+          <v-flex xs6 class="text-xs-center">
+            <a href="#!" class="body-2 blacktext">EDIT</a>
+          </v-flex> -->
           </v-layout>
           <v-list-group
             v-else-if="item.children"
@@ -74,16 +74,8 @@
     >
       <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-        <span class="hidden-sm-and-down">Google Contacts</span>
+        <span class="hidden-sm-and-down"></span>
       </v-toolbar-title>
-      <v-text-field
-        flat
-        solo-inverted
-        hide-details
-        prepend-inner-icon="search"
-        label="Search"
-        class="hidden-sm-and-down"
-      ></v-text-field>
       <v-spacer></v-spacer>
       <v-btn icon>
         <v-icon>notifications</v-icon>
@@ -113,12 +105,12 @@
       items: [
         { icon: 'dashboard', text: 'Home' },
         {
-          icon: 'keyboard_arrow_down',
-          'icon-alt': 'group_work',
+          icon: 'touch_app',
+          'icon-alt': 'touch_app',
           text: 'Clustering Reports',
           model: false,
           children: [
-            { icon: 'add', text: 'Organize and Dispatch' }
+            { icon: 'group_work', text: 'Organize and Dispatch' }
           ]
         },
         { icon: 'memory', text: 'DSS' },
