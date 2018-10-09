@@ -1,18 +1,24 @@
 <template>
-  <v-container>
+  <v-container id="dropdown-example">
     <v-layout justify-center>
       <v-card>
-        <v-card-title>
-          Reports Database History
-          <v-spacer></v-spacer>
-          <v-text-field
-            v-model="search"
-            append-icon="search"
-            label="Search"
-            single-line
-            hide-details
-          ></v-text-field>
-        </v-card-title>
+          <v-card-title>
+            Reports Database History
+            <v-spacer></v-spacer>
+            <!-- <v-overflow-btn
+             :items="month"
+             label="Month"
+             target="#dropdown-example"
+             pa-2
+           ></v-overflow-btn> -->
+            <v-text-field
+              v-model="search"
+              append-icon="search"
+              label="Search"
+              single-line
+              hide-details
+            ></v-text-field>
+          </v-card-title>
         <v-data-table
           :headers="headers"
           :items="reports"
@@ -29,11 +35,13 @@
               <td>{{ props.item.time }}</td>
               <td>{{ props.item.date }}</td>
               <td>{{ props.item.status }}</td>
+              <td>{{ props.item.date_verified }}</td>
            </tr>
           </template>
           <template slot="expand" slot-scope="props">
             <v-card flat>
               <v-card-text>{{ props.item.description }}</v-card-text>
+              <v-card-text>{{ props.item.description_tanod }}</v-card-text>
             </v-card>
           </template>
           <template slot="no-data">
@@ -52,8 +60,14 @@
 
 <script>
   export default {
-    data () {
+    data: () => {
       return {
+        month: [
+          'Jan', 'Feb', 'Mar',
+          'Gimay', 'May', 'Jun',
+          'Jul', 'Aug', 'Sep',
+          'Oct', 'Nov', 'Dec'
+        ],
         search: '',
         headers: [
           {
@@ -65,33 +79,44 @@
           {
             text: 'Report Type',
             align: 'left',
-            sortable: false,
+            sortable: true,
             value: 'type'
           },
-          { text: 'Report Location',
+          {
+            text: 'Report Location',
             align: 'left',
-            sortable: false,
+            sortable: true,
             value: 'location'
           },
-          { text: 'Reporter',
+          {
+            text: 'Reporter',
             align: 'left',
             sortable: false,
             value: 'reporter'
           },
-          { text: 'Time',
+          {
+            text: 'Time',
             align: 'left',
             sortable: false,
             value: 'time'
           },
-          { text: 'Date',
+          {
+            text: 'Date',
             align: 'left',
             sortable: false,
             value: 'date'
           },
-          { text: 'Status',
+          {
+            text: 'Status',
             align: 'left',
             sortable: true,
             value: 'status'
+          },
+          {
+            text: 'Date Verified',
+            align: 'left',
+            sortable: false,
+            value: 'date_verified'
           }
         ],
         reports: [
@@ -101,9 +126,11 @@
             location: 'Area-11',
             reporter: 'Gimay',
             time: '0000hrs',
-            date: '01-01-2011',
+            date: 'Feb-12-2011',
             status: 'unverified',
-            description: 'Okok6'
+            date_verified: 'NULL',
+            description: 'Description: Report Remarks1',
+            description_tanod: 'Description by Tanod: Yet to be verify'
           },
           {
             id: '2',
@@ -111,9 +138,11 @@
             location: 'Area-12',
             reporter: 'Gamay',
             time: '0010hrs',
-            date: '21-02-2011',
+            date: 'Jan-22-2011',
             status: 'verified',
-            description: 'Okok5'
+            date_verified: 'Jan-22-2011',
+            description: 'Description: Report Remarks2',
+            description_tanod: 'Description by Tanod: New Remarks1'
           },
           {
             id: '3',
@@ -121,9 +150,11 @@
             location: 'Area-11',
             reporter: 'Gimay',
             time: '0000hrs',
-            date: '01-01-2011',
+            date: 'Jan-11-2011',
             status: 'unverified',
-            description: 'Okok4'
+            date_verified: 'NULL',
+            description: 'Description: Report Remarks3',
+            description_tanod: 'Description by Tanod: Yet to be verify'
           },
           {
             id: '4',
@@ -131,9 +162,11 @@
             location: 'Area-12',
             reporter: 'Gamay',
             time: '0010hrs',
-            date: '21-02-2011',
+            date: 'Feb-21-2011',
             status: 'verified',
-            description: 'Okok3'
+            date_verified: 'Feb-21-2011',
+            description: 'Description: Report Remarks4',
+            description_tanod: 'Description by Tanod: New Remarks2'
           },
           {
             id: '5',
@@ -141,9 +174,11 @@
             location: 'Area-11',
             reporter: 'Gimay',
             time: '0000hrs',
-            date: '01-01-2011',
+            date: 'Feb-11-2012',
             status: 'verified',
-            description: 'Okok2'
+            date_verified: 'Feb-16-2012',
+            description: 'Description: Report Remarks5',
+            description_tanod: 'Description by Tanod: New Remarks3'
           },
           {
             id: '6',
@@ -151,9 +186,23 @@
             location: 'Area-12',
             reporter: 'Gamay',
             time: '0010hrs',
-            date: '21-02-2011',
+            date: 'Mar-21-2011',
             status: 'unverified',
-            description: 'Okok1'
+            date_verified: 'NULL',
+            description: 'Description: Report Remarks6',
+            description_tanod: 'Description by Tanod: Yet to be verify'
+          },
+          {
+            id: '7',
+            type: 'Fire',
+            location: 'Area-11',
+            reporter: 'Dako',
+            time: '0030hrs',
+            date: 'Feb-21-2012',
+            status: 'verified',
+            date_verified: 'Feb-21-2012',
+            description: 'Description: Report Remarks7',
+            description_tanod: 'Description by Tanod: New Remarks4'
           }
         ]
       }

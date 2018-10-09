@@ -1,72 +1,19 @@
 <template>
-  <v-app id="inspire">
-    <v-navigation-drawer
-      :clipped="$vuetify.breakpoint.lgAndUp"
-      v-model="drawer"
-      fixed
-      app
-    >
-      <v-list dense>
-        <template v-for="item in items">
-          <v-layout
-            v-if="item.heading"
-            :key="item.heading"
-            row
-            align-center
-          >
-          <!-- <v-flex xs6>
-            <v-subheader v-if="item.heading">
-              {{ item.heading }}
-            </v-subheader>
-          </v-flex>
-          <v-flex xs6 class="text-xs-center">
-            <a href="#!" class="body-2 blacktext">EDIT</a>
-          </v-flex> -->
-          </v-layout>
-          <v-list-group
-            v-else-if="item.children"
-            v-model="item.model"
-            :key="item.text"
-            :prepend-icon="item.model ? item.icon : item['icon-alt']"
-            append-icon=""
-          >
-            <v-list-tile slot="activator">
-              <v-list-tile-content>
-                <v-list-tile-title>
-                  {{ item.text }}
-                </v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
-            <v-list-tile
-              v-for="(child, i) in item.children"
-              :key="i"
-              @click=""
-            >
-              <v-list-tile-action v-if="child.icon">
-                <v-icon>{{ child.icon }}</v-icon>
-              </v-list-tile-action>
-              <v-list-tile-content>
-                <v-list-tile-title>
-                  {{ child.text }}
-                </v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
-          </v-list-group>
-          <v-list-tile v-else :key="item.text" @click="">
-            <v-list-tile-action>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>
-                {{ item.text }}
-              </v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-        </template>
+  <v-app>
+    <v-navigation-drawer v-model="drawer" fixed app>
+      <v-list>
+        <v-list-tile
+          v-for="item in items"
+          :key="item.text"
+          :to="item.link">
+          <v-list-tile-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>{{ item.text }}</v-list-tile-content>
+        </v-list-tile>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar
-      :clipped-left="$vuetify.breakpoint.lgAndUp"
       color="blue darken-3"
       dark
       app
@@ -75,19 +22,89 @@
       <v-toolbar-title style="width: 300px" class="ml-0 pl-3">
         <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
         <span class="hidden-sm-and-down"></span>
+        Disaster DSS prototype
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>notifications</v-icon>
-      </v-btn>
-      <v-btn icon large>
-        <v-avatar size="32px" tile>
-          <img
-            src="https://cdn.vuetifyjs.com/images/logos/logo.svg"
-            alt="Vuetify"
+      <v-menu
+        transition="slide-x-transition"
+        :nudge-width="200"
+        bottom
+        left
+      >
+        <v-btn slot="activator"  icon>
+          <v-badge
+            overlap
+            color="red"
           >
-        </v-avatar>
-      </v-btn>
+            <span
+             slot="badge"
+             small
+            >2</span>
+            <v-icon>notification_important</v-icon>
+          </v-badge>
+        </v-btn>
+        <v-card>
+            <v-list>
+              <v-list-title><p class="text-xs-center"><b>Quick Respond</b></p></v-list-title>
+              <v-divider></v-divider>
+              <v-list-tile avatar>
+                <v-list-tile-avatar color="teal">
+                  <v-icon dark>pool</v-icon>
+                </v-list-tile-avatar>
+                <v-list-tile-content>
+                  <v-list-tile-title>[Flood] Area-12</v-list-tile-title>
+                  <v-list-tile-sub-title>Gamay 12:00nn Jan/21/2011</v-list-tile-sub-title>
+                </v-list-tile-content>
+              </v-list-tile>
+              <v-divider></v-divider>
+              <v-list-tile avatar>
+                <v-list-tile-avatar color="blue-grey">
+                  <v-icon dark>beach_access</v-icon>
+                </v-list-tile-avatar>
+                <v-list-tile-content>
+                  <v-list-tile-title>[Storm] Area-11</v-list-tile-title>
+                  <v-list-tile-sub-title>Gimay 10:00am Jan/21/2011</v-list-tile-sub-title>
+                </v-list-tile-content>
+              </v-list-tile>
+              <v-divider></v-divider>
+              <v-list-tile avatar>
+                <v-list-tile-avatar color="red">
+                  <v-icon dark>whatshot</v-icon>
+                </v-list-tile-avatar>
+                <v-list-tile-content>
+                  <v-list-tile-title>[Fire] Area-11</v-list-tile-title>
+                  <v-list-tile-sub-title>Dako 10:00am Nov/01/2010</v-list-tile-sub-title>
+                </v-list-tile-content>
+              </v-list-tile>
+            </v-list>
+        </v-card>
+      </v-menu>
+      <v-menu
+        transition="slide-x-transition"
+        :nudge-width="200"
+        bottom
+        left
+      >
+        <v-btn slot="activator"  icon>
+          <v-badge
+            overlap
+            color="red"
+          >
+            <span
+             slot="badge"
+             small
+            >2</span>
+            <v-icon>event_note</v-icon>
+          </v-badge>
+        </v-btn>
+        <v-card>
+          <v-list>
+            <v-list-title><p class="text-xs-center"><b>Brgy. Tanod Tasks</b></p></v-list-title>
+            <v-divider></v-divider>
+
+          </v-list>
+        </v-card>
+      </v-menu>
     </v-toolbar>
     <main>
       <v-content>
@@ -100,21 +117,29 @@
 <script>
   export default {
     data: () => ({
-      dialog: false,
       drawer: null,
       items: [
-        { icon: 'dashboard', text: 'Home' },
+        { icon: 'dashboard', text: 'Home', link: '/' },
         {
-          icon: 'touch_app',
-          'icon-alt': 'touch_app',
+          icon: 'scatter_plot',
           text: 'Clustering Reports',
-          model: false,
-          children: [
-            { icon: 'group_work', text: 'Organize and Dispatch' }
-          ]
+          link: '/clustering-reports'
         },
-        { icon: 'memory', text: 'DSS' },
-        { icon: 'terrain', text: 'Hazard Mapping' }
+        {
+          icon: 'group_work',
+          text: 'Organize and Dispatch',
+          link: '/organize-and-dispatch'
+        },
+        {
+          icon: 'memory',
+          text: 'DSS',
+          link: '/decision-support-system'
+        },
+        {
+          icon: 'terrain',
+          text: 'Hazard Mapping',
+          link: '/hazard-mapping'
+        }
       ]
     }),
     props: {
