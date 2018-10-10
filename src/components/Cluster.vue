@@ -55,7 +55,7 @@
         </v-data-table>
       </v-card>
     </v-layout>
-    
+
     <v-layout justify-center mt-5>
       <img src='/static/mapverified.png'/>
     </v-layout>
@@ -126,7 +126,7 @@
         ],
         reports: [
           {
-            id: '2',
+            id: '1',
             type: 'Fire',
             location: 'Sardonyx St.',
             reporter: 'Jotaro Kujo',
@@ -138,7 +138,7 @@
             description_tanod: 'Description by Tanod: New Remarks1'
           },
           {
-            id: '4',
+            id: '2',
             type: 'Fire',
             location: 'Reta Ave',
             reporter: 'Josuke Higashikata',
@@ -150,7 +150,7 @@
             description_tanod: 'Description by Tanod: New Remarks2'
           },
           {
-            id: '5',
+            id: '3',
             type: 'Flood',
             location: 'Sardonyx St',
             reporter: 'Dio Brando',
@@ -162,7 +162,7 @@
             description_tanod: 'Description by Tanod: New Remarks3'
           },
           {
-            id: '7',
+            id: '4',
             type: 'Fire',
             location: 'Sardonyx St',
             reporter: 'Giorno Giovanna',
