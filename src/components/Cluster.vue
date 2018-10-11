@@ -1,63 +1,68 @@
 <template>
   <v-container id="dropdown-example">
-    <v-layout justify-center>
-      <v-card>
-          <v-card-title>
-            Reports Database History
-            <v-spacer></v-spacer>
-            <!-- <v-overflow-btn
-             :items="month"
-             label="Month"
-             target="#dropdown-example"
-             pa-2
-           ></v-overflow-btn> -->
-            <v-text-field
-              v-model="search"
-              append-icon="search"
-              label="Search"
-              single-line
-              hide-details
-            ></v-text-field>
-          </v-card-title>
-        <v-data-table
-          :headers="headers"
-          :items="reports"
-          :search="search"
-          hide-actions
-          item-key="id"
-        >
-          <template slot="items" slot-scope="props">
-            <tr @click="props.expanded = !props.expanded">
-              <td>{{ props.item.id }}</td>
-              <td>{{ props.item.type }}</td>
-              <td>{{ props.item.location }}</td>
-              <td>{{ props.item.reporter }}</td>
-              <td>{{ props.item.time }}</td>
-              <td>{{ props.item.date }}</td>
-              <td>{{ props.item.status }}</td>
-              <td>{{ props.item.date_verified }}</td>
-           </tr>
-          </template>
-          <template slot="expand" slot-scope="props">
-            <v-card flat>
-              <v-card-text>{{ props.item.description }}</v-card-text>
-              <v-card-text>{{ props.item.description_tanod }}</v-card-text>
-            </v-card>
-          </template>
-          <template slot="no-data">
-            <v-alert :value="true" color="error" icon="warning">
-              Sorry, nothing to display here :(
+    <v-layout justify-space-around row>
+      <v-flex sm8 mr-5>
+        <v-card>
+            <v-card-title>
+              Reports Database History
+              <v-spacer></v-spacer>
+              <!-- <v-overflow-btn
+               :items="month"
+               label="Month"
+               target="#dropdown-example"
+               pa-2
+             ></v-overflow-btn> -->
+              <v-text-field
+                v-model="search"
+                append-icon="search"
+                label="Search"
+                single-line
+                hide-details
+              ></v-text-field>
+            </v-card-title>
+          <v-data-table
+            :headers="headers"
+            :items="reports"
+            :search="search"
+            v-model="selected"
+            hide-actions
+            item-key="id"
+            select-all
+            class="elevation-1"
+          >
+            <template slot="items" slot-scope="props">
+                <td>
+                  <v-checkbox
+                    v-model="props.selected"
+                    hide-details
+                  ></v-checkbox>
+                </td>
+                <td>{{ props.item.id }}</td>
+                <td>{{ props.item.type }}</td>
+                <td>{{ props.item.location }}</td>
+                <td>{{ props.item.reporter }}</td>
+                <td>{{ props.item.time }}</td>
+                <td>{{ props.item.date }}</td>
+                <td>{{ props.item.status }}</td>
+                <td>{{ props.item.date_verified }}</td>
+            </template>
+            <template slot="no-data">
+              <v-alert :value="true" color="error" icon="warning">
+                Sorry, nothing to display here :(
+              </v-alert>
+            </template>
+            <v-alert slot="no-results" :value="true" color="error" icon="warning">
+              Your search for "{{ search }}" found no results.
             </v-alert>
-          </template>
-          <v-alert slot="no-results" :value="true" color="error" icon="warning">
-            Your search for "{{ search }}" found no results.
-          </v-alert>
-        </v-data-table>
-      </v-card>
-    </v-layout>
-
-    <v-layout justify-center mt-5>
-      <img src='/static/mapverified.png'/>
+          </v-data-table>
+        </v-card>
+        <v-flex mt-3>
+          <v-btn color="red" dark ripple>Cluster</v-btn>
+        </v-flex>
+      </v-flex>
+      <v-flex xs12 sm6>
+        <img src='/static/mapverified.png' width="100%"/>
+      </v-flex>
     </v-layout>
   </v-container>
 
@@ -74,6 +79,7 @@
           'Oct', 'Nov', 'Dec'
         ],
         search: '',
+        selected: [],
         headers: [
           {
             text: 'ID',

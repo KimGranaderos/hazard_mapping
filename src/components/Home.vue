@@ -25,6 +25,7 @@
           :search="search"
           hide-actions
           item-key="id"
+          class="elevation-1"
         >
           <template slot="items" slot-scope="props">
             <tr @click="props.expanded = !props.expanded">
