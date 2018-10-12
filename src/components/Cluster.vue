@@ -57,13 +57,59 @@
           </v-data-table>
         </v-card>
         <v-flex mt-3>
-          <v-btn color="red" dark ripple>Cluster</v-btn>
+          <v-btn round outline class="elevation-1" color="red" dark ripple>
+            Cluster
+          </v-btn>
+        </v-flex>
+        <v-flex mt-3>
+          <v-btn
+            round
+            outline
+            @click="dialog = !dialog"
+            class="elevation-1"
+            color="blue-grey"
+            dark
+            ripple
+          >
+            <v-icon left color="blue">touch_app</v-icon>
+            Assign Tanod
+          </v-btn>
         </v-flex>
       </v-flex>
       <v-flex xs12 sm6>
         <img src='/static/mapverified.png' width="100%"/>
       </v-flex>
     </v-layout>
+    <v-dialog v-model="dialog" width="600px">
+      <v-card>
+        <v-layout align-center justify-center row fill-height/>
+          <v-flex>
+            <v-img
+              src="/static/dialogpic.png"
+              width="100%"
+            >
+            </v-img>
+          </v-flex>
+        </v-layout>
+        <v-container class="pa-4">
+          <v-list-tile two-line>
+            <v-list-tile-content class="mr-5">
+              <v-list-tile-title>Verify</v-list-tile-title>
+              <v-list-tile-title>Area-11b (y)</v-list-tile-title>
+            </v-list-tile-content>
+            <v-list-tile-content class="ml-5">
+              <v-list-tile-title>Damiel</v-list-tile-title>
+              <v-list-tile-sub-title>Feb-21-2012</v-list-tile-sub-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-container>
+        <v-card-actions>
+        <v-spacer></v-spacer>
+        <p>Assign Brgy Tanod</p>
+        <v-btn color="red" flat @click="dialog = false">Send</v-btn>
+      </v-card-actions>
+        </v-card>
+    </v-dialog>
   </v-container>
 
 </template>
@@ -72,6 +118,7 @@
   export default {
     data: () => {
       return {
+        dialog: false,
         month: [
           'Jan', 'Feb', 'Mar',
           'Gimay', 'May', 'Jun',

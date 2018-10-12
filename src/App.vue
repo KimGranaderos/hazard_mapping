@@ -191,11 +191,6 @@
           link: '/clustering-reports'
         },
         {
-          icon: 'group_work',
-          text: 'Organize and Dispatch',
-          link: '/organize-and-dispatch'
-        },
-        {
           icon: 'memory',
           text: 'DSS',
           link: '/decision-support-system'
