@@ -1,23 +1,17 @@
 <template>
   <v-layout align-center justify-center column mt-5 pr-5>
     <v-layout align-start justify-center row>
-      <v-flex xs12 sm6 d-flex pt-4 pl-5>
-          <p class="text-xs-center"><strong>Month</strong></p>
-      </v-flex>
       <v-flex xs12 sm6 d-flex mr-5>
          <v-select
            :items="month"
-           label="Solo field"
+           label="Month"
            solo
          ></v-select>
-       </v-flex>
-       <v-flex xs12 sm6 d-flex pt-4 pl-3>
-           <p class="text-xs-center"><strong>Incident Type</strong></p>
        </v-flex>
        <v-flex xs12 sm6>
           <v-select
             :items="i_type"
-            label="Solo field"
+            label="Incident Type"
             solo
           ></v-select>
         </v-flex>

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-navigation-drawer v-model="drawer" fixed app>
+    <v-navigation-drawer temporary v-model="drawer" app>
       <v-list>
         <v-list-tile
           v-for="item in items"

@@ -2,7 +2,7 @@
   <v-container id="dropdown-example">
     <v-layout justify-space-around row>
       <v-flex sm8 mr-5>
-        <v-card>
+        <v-card sm10>
             <v-card-title>
               Reports Database History
               <v-spacer></v-spacer>
@@ -76,9 +76,9 @@
           </v-btn>
         </v-flex>
       </v-flex>
-      <v-flex xs12 sm6>
-        <img src='/static/mapverified.png' width="100%"/>
-      </v-flex>
+      <v-card>
+        <img src='/static/mapverified.png' width="120%" height="520px"/>
+      </v-card>
     </v-layout>
     <v-dialog v-model="dialog" width="600px">
       <v-card>
